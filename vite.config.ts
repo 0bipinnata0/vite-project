@@ -6,9 +6,17 @@ import viteEslint from 'vite-plugin-eslint';
 // 2. tsconfig.node.json 中设置 `allowSyntheticDefaultImports: true`，以允许下面的 default 导入方式
 import path from 'path';
 import react from '@vitejs/plugin-react';
+import StylelintPlugin from 'vite-plugin-stylelint';
 
 export default defineConfig({
   // 手动指定项目根目录位置
   root: path.join(__dirname, '.'), // 指定html的目录位置
-  plugins: [react(), viteEslint()]
+  plugins: [
+    react(),
+    viteEslint(),
+    StylelintPlugin({
+      // 对某些文件排除检查
+      exclude: ['windicss', 'node_modules']
+    })
+  ]
 });
