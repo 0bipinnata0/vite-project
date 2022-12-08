@@ -1,9 +1,23 @@
 {
   "name": "vite-project",
+  "husky": {
+    "pre-commit": "npm run lint"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,tsx,ts}": [
+      "npm run lint:script",
+      "git add ."
+    ],
+    "**/*.{scss}": [
+      "npm run lint:style",
+      "git add ."
+    ]
+  },
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prepare": "husky install",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
@@ -26,6 +40,8 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.8.0",
     "stylelint": "^14.16.0",
     "stylelint-config-prettier": "^9.0.4",
